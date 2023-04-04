@@ -72,11 +72,9 @@ public class TicTacToe implements ActionListener{
                         textfield.setText("X turn");
                         check();
                     }
-
                 }
             }
         }
-
     }
 
     public void firstTurn(){
@@ -97,6 +95,7 @@ public class TicTacToe implements ActionListener{
 
     }
     public void check(){
+        String winner=null;
         //check X winning conditions
         //CHECKING THE ROWS
         if(
@@ -105,6 +104,7 @@ public class TicTacToe implements ActionListener{
            (buttons[2].getText()=="X")
            ){
             xWins(0,1,2);
+            winner="X";
         }
 
         if(
@@ -113,6 +113,7 @@ public class TicTacToe implements ActionListener{
            (buttons[5].getText()=="X")
            ){
             xWins(3,4,5);
+            winner="X";
         }
 
         if(
@@ -121,6 +122,7 @@ public class TicTacToe implements ActionListener{
            (buttons[8].getText()=="X")
            ){
             xWins(6,7,8);
+            winner="X";
         }
 
         //CHECKING THE COLUMNS
@@ -131,6 +133,7 @@ public class TicTacToe implements ActionListener{
            (buttons[6].getText()=="X")
            ){
             xWins(0,3,6);
+            winner="X";
         }
         if(
            (buttons[1].getText()=="X") && 
@@ -138,6 +141,7 @@ public class TicTacToe implements ActionListener{
            (buttons[7].getText()=="X")
            ){
             xWins(1,4,7);
+            winner="X";
         }
 
         if(
@@ -146,6 +150,7 @@ public class TicTacToe implements ActionListener{
            (buttons[8].getText()=="X")
            ){
             xWins(2,5,8);
+            winner="X";
         }
 
         //CHECKING THE DIAGONALS
@@ -156,6 +161,7 @@ public class TicTacToe implements ActionListener{
            (buttons[8].getText()=="X")
            ){
             xWins(0,4,8);
+            winner="X";
         }
 
         if(
@@ -164,6 +170,7 @@ public class TicTacToe implements ActionListener{
            (buttons[6].getText()=="X")
            ){
             xWins(2,4,6);
+            winner="X";
         }
 
 
@@ -176,6 +183,7 @@ public class TicTacToe implements ActionListener{
            (buttons[2].getText()=="O")
            ){
             oWins(0,1,2);
+            winner="O";
         }
 
         if(
@@ -184,6 +192,7 @@ public class TicTacToe implements ActionListener{
            (buttons[5].getText()=="O")
            ){
             oWins(3,4,5);
+            winner="O";
         }
 
         if(
@@ -192,6 +201,7 @@ public class TicTacToe implements ActionListener{
            (buttons[8].getText()=="O")
            ){
             oWins(6,7,8);
+            winner="O";
         }
 
         //CHECKING THE COLUMNS
@@ -202,6 +212,7 @@ public class TicTacToe implements ActionListener{
            (buttons[6].getText()=="O")
            ){
             oWins(0,3,6);
+            winner="O";
         }
         if(
            (buttons[1].getText()=="O") && 
@@ -209,6 +220,7 @@ public class TicTacToe implements ActionListener{
            (buttons[7].getText()=="O")
            ){
             oWins(1,4,7);
+            winner="O";
         }
 
         if(
@@ -217,6 +229,7 @@ public class TicTacToe implements ActionListener{
            (buttons[8].getText()=="O")
            ){
             oWins(2,5,8);
+            winner="O";
         }
 
         //CHECKING THE DIAGONALS
@@ -227,6 +240,7 @@ public class TicTacToe implements ActionListener{
            (buttons[8].getText()=="O")
            ){
             oWins(0,4,8);
+            winner="O";
         }
     
 
@@ -236,7 +250,14 @@ public class TicTacToe implements ActionListener{
            (buttons[6].getText()=="O")
            ){
             oWins(2,4,6);
+            winner="O";
         } 
+
+        if(winner!=null){
+            JOptionPane.showMessageDialog(null,winner+" wins!!");
+        }else if(boardIsFull()){
+            JOptionPane.showMessageDialog(null,"Draw!!");
+        }
     }
 
     public void xWins(int a, int b, int c){
@@ -264,4 +285,18 @@ public class TicTacToe implements ActionListener{
         textfield.setText("O Wins");
         
     }
+
+    public boolean boardIsFull(){
+        
+        for(int i=0;i<9;i++){
+            if(buttons[i].getText().equals("")){
+                return false;
+            }
+        }
+        return true;
+    
+    }
+
+    
+    
 }
